@@ -9,17 +9,53 @@ import SwiftUI
 
 struct ContentView: View {
     @State var isAgree: Bool = false
+    @State private var notes = Note.notes
+    @State private var showNewNoteView: Bool = false
+
       
     //代码块的顺序决定了视图的先后顺序
     var body: some View {
-        VStack(spacing:32) {
-            pageImageView
-            sloganTextView
-            authorizedLoginBtnView
-            userAgreementView
+        ZStack(alignment: .bottomTrailing) {
+            VStack {
+                noteTitleView
+                noteListView
+            }
+            addBtnView
         }
-        .padding(40)
-        .background(Color.bgColor)
+        .sheet(isPresented: $showNewNoteView) {
+            NewNoteView(showNewNoteView: $showNewNoteView,notes: $notes)
+                .presentationDetents([.medium])
+        }
+//        VStack(spacing:32) {
+//            pageImageView
+//            sloganTextView
+//            authorizedLoginBtnView
+//            userAgreementView
+//        }
+//        .padding(40)
+//        .background(Color.bgColor)
+    }
+    
+    //新增按钮
+    private var addBtnView: some View {
+        Button(action: {
+            self.showNewNoteView.toggle()
+        }) {
+            Image(systemName: "plus.circle.fill").font(.system(size: 48)).padding(.horizontal)
+        }
+    }
+    
+    //界面标题
+    private var noteTitleView : some View {
+        Text("Note笔记").font(.title).bold()
+    }
+    
+    //笔记列表
+    private var noteListView: some View {
+        List($notes, editActions: .all) {$note in
+            Text(note.noteContent)
+        }
+        .listStyle(.plain)
     }
     
     //封面图片
