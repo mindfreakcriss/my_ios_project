@@ -11,11 +11,11 @@ struct LoginBtnView: View {
     var btnName: String
     var btnTextColor: Color
     var btnBackgroundColor: Color
-    
+
     var body: some View {
         Text(btnName)
             .foregroundColor(btnTextColor)
-            .frame(maxWidth: .infinity,maxHeight: 48)
+            .frame(maxWidth: .infinity, maxHeight: 48)
             .background(btnBackgroundColor)
             .cornerRadius(8)
     }

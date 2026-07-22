@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+
     //代码块的顺序决定了视图的先后顺序
     var body: some View {
-       
+        Text("hello world")
     }
 }
 
