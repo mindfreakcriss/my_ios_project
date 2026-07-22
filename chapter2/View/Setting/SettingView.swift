@@ -135,7 +135,7 @@ struct SettingView: View {
         if let scene = UIApplication.shared.connectedScenes.first(where: {
             $0.activationState == .foregroundActive
         }) as? UIWindowScene {
-            SKStoreReviewController.requestReview(in: scene)
+          //  SKStoreReviewController.requestReview(in: scene)
         }
     }
 
